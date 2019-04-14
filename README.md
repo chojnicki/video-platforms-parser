@@ -66,11 +66,35 @@ $info = VideoPlatformsParser::get('https://www.youtube.com/watch?v=jofNR_WkoCE')
 ```
 
 
-## Usage without Laravel
+## Usage without Laravel but with Composer
+Require Composer to project if it was not required before
+```
+require_once 'vendor/autoload.php';
+```
 
 Create new object:
 ```
-$parser = new VideoPlatformsParser();
+$parser = new Chojnicki\VideoPlatformsParser\VideoPlatformsParser(); // put array config inside
+```
+
+Grab video info like this:
+```
+$info = $parser->get('https://www.youtube.com/watch?v=jofNR_WkoCE');
+```
+
+## Usage without Laravel and without Composer
+Require parser
+```
+require '/video-platforms-parser/src/VideoPlatformsParser.php';
+```
+Manually load parsers for every video platform that will be used
+```
+require '/video-platforms-parser/src/parsers/YouTube.php';
+```
+
+Create new object:
+```
+$parser = new Chojnicki\VideoPlatformsParser\VideoPlatformsParser(); // put array config inside
 ```
 
 Grab video info like this:
