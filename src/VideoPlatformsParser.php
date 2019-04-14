@@ -121,7 +121,7 @@ class VideoPlatformsParser
                 'id' => $params_url['t']
             ];
         } else if (strpos($parsed_url['host'], 'dailymotion.com') !== false) {
-            if (!strpos($parsed_url['path'], '/video/') !== false) return false;
+            if (strpos($parsed_url['path'], '/video/') === false) return false;
             if (empty(explode('/', $parsed_url['path'])[2])) return false;
 
             return [
@@ -154,7 +154,7 @@ class VideoPlatformsParser
                 'id' => end($path)
             ];
         } else if (strpos($parsed_url['host'], 'cda.pl') !== false) {
-            if (!strpos($parsed_url['path'], '/video/') !== false) return false;
+            if (strpos($parsed_url['path'], '/video/') === false) return false;
             if (empty(explode('/', $parsed_url['path'])[2])) return false;
 
             return [
