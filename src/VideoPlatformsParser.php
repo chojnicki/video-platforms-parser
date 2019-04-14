@@ -106,37 +106,37 @@ class VideoPlatformsParser
         parse_str(!empty($parsed_url['query']) ? $parsed_url['query'] : '', $params_url);
 
         /* Detect site and parse video ID */
-        if (str_contains($parsed_url['host'], 'youtube.com')) {
+        if (strpos($parsed_url['host'], 'youtube.com') !== false) {
             if (empty($params_url['v'])) return false;
 
             return [
                 'platform' => 'youtube',
                 'id' => $params_url['v']
             ];
-        } else if (str_contains($parsed_url['host'], 'liveleak.com')) {
+        } else if (strpos($parsed_url['host'], 'liveleak.com') !== false) {
             if (empty($params_url['t'])) return false;
 
             return [
                 'platform' => 'liveleak',
                 'id' => $params_url['t']
             ];
-        } else if (str_contains($parsed_url['host'], 'dailymotion.com')) {
-            if (!str_contains($parsed_url['path'], '/video/')) return false;
+        } else if (strpos($parsed_url['host'], 'dailymotion.com') !== false) {
+            if (!strpos($parsed_url['path'], '/video/') !== false) return false;
             if (empty(explode('/', $parsed_url['path'])[2])) return false;
 
             return [
                 'platform' => 'dailymotion',
                 'id' => explode('/', $parsed_url['path'])[2]
             ];
-        } else if (str_contains($parsed_url['host'], 'facebook.com')) {
-            if (str_contains($parsed_url['path'], '/videos/')) { // #1 type link
+        } else if (strpos($parsed_url['host'], 'facebook.com') !== false) {
+            if (strpos($parsed_url['path'], '/videos/') !== false) { // #1 type link
                 if (empty(explode('/', $parsed_url['path'])[3])) return false;
 
                 return [
                     'platform' => 'facebook',
                     'id' => explode('/', $parsed_url['path'])[3]
                 ];
-            } else if (str_contains($parsed_url['path'], '/watch/')) { // #2 type link
+            } else if (strpos($parsed_url['path'], '/watch/') !== false) { // #2 type link
                 if (empty($params_url['v'])) return false;
 
                 return [
@@ -144,7 +144,7 @@ class VideoPlatformsParser
                     'id' => $params_url['v']
                 ];
             }
-        } else if (str_contains($parsed_url['host'], 'vimeo.com')) {
+        } else if (strpos($parsed_url['host'], 'vimeo.com') !== false) {
             if (empty($parsed_url['path'])) return false;
             $path = explode('/', $parsed_url['path']);
             if (!is_numeric(end($path))) return false;
@@ -153,8 +153,8 @@ class VideoPlatformsParser
                 'platform' => 'vimeo',
                 'id' => end($path)
             ];
-        } else if (str_contains($parsed_url['host'], 'cda.pl')) {
-            if (!str_contains($parsed_url['path'], '/video/')) return false;
+        } else if (strpos($parsed_url['host'], 'cda.pl') !== false) {
+            if (!strpos($parsed_url['path'], '/video/') !== false) return false;
             if (empty(explode('/', $parsed_url['path'])[2])) return false;
 
             return [
