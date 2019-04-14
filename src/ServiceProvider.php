@@ -16,7 +16,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->app->bind(VideoPlatformsParser::class, function ($app) {
-            if (!$this->app['config']->get('video-platforms-parser.youtube_api_key')) return $app;
+            if (!$this->app['config']->get('video-platforms-parser')) return $app;
             return new VideoPlatformsParser(
                 $this->app['config']->get('video-platforms-parser')
             );
