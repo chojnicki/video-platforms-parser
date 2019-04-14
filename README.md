@@ -46,12 +46,11 @@ Require package with composer:
 composer require chojnicki/video-platforms-grabber
 ```
 
-In `/config/app.php` add service provider (not required from Laravel 5.4):
+(for Laravel below 5.5) In `/config/app.php` add Service Provider:
 ```
 Chojnicki\VideoPlatformsParser\ServiceProvider::class,
 ```
-
-Add also Facade:
+(for Laravel below 5.5) In `/config/app.php` add Facade:
 ```
 'VideoPlatformsParser' => Chojnicki\VideoPlatformsParser\Facade::class,
 ```
