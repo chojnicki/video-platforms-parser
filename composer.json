@@ -9,8 +9,8 @@
             "email": "lukchojnicki@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
+        "php": "^7.0"
     },
     "autoload": {
         "psr-4": {
