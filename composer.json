@@ -1,0 +1,30 @@
+{
+    "name": "chojnicki/video-platforms-parser",
+    "description": "Easy to use grabber for video info, screens and more from YouTube and other platforms.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "chojnicki",
+            "email": "lukchojnicki@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Chojnicki\\VideoPlatformsParser\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Chojnicki\\VideoPlatformsParser\\ServiceProvider"
+            ],
+            "aliases": {
+                "VideoPlatformsParser": "Chojnicki\\VideoPlatformsParser\\Facade"
+            }
+        }
+    }
+}
