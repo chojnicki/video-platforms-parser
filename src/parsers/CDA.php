@@ -36,6 +36,9 @@ class CDA
                 $return['description'] = $meta->getAttribute('content');
             } else if ($meta->getAttribute('property') == 'og:image') {
                 $return['thumbnail'] = $meta->getAttribute('content');
+                if (strpos($return['thumbnail'], 'http') === false) {
+                    $return['thumbnail'] = 'https:' . $return['thumbnail'];
+                }
             } else if ($meta->getAttribute('name') == 'keywords') {
                 $return['tags'] = $meta->getAttribute('content');
                 $return['tags'] = explode(',', $return['tags']);
@@ -45,8 +48,4 @@ class CDA
 
         return $return;
     }
-
-
-
-
 }
