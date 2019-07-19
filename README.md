@@ -1,6 +1,6 @@
 # Video Platforms Parser
 
-Video Plarforms Parser is easy to use SDK for multiple platforms at once, like YouTube or Dailymotion.
+Video Platforms Parser is easy to use SDK for multiple platforms at once, like YouTube or Dailymotion.
 
 ## Requirements
 
@@ -21,17 +21,17 @@ Video Plarforms Parser is easy to use SDK for multiple platforms at once, like Y
 * With API - parser is using official API - fast and reliable (but YouTube require api key)
 * Without API - parser will grab video page and parse required info (needed in platforms that do not provide API or as a backup) - can be slower and less reliable
 
-Every parser that is using API also has parser without API as backup. To use it you need to disable API for selected platform in config (not recomended).
+Every parser that is using API also has parser without API as backup. To use it you need to disable API for selected platform in config (not recommended).
 
 
-## Instalation with Composer
+## Installation with Composer
 
 Simply require package with composer:
 ```
 composer require chojnicki/video-platforms-grabber
 ```
 
-## Instalation without Composer or Laravel
+## Installation without Composer or Laravel
 Download zip of this repository and unpack in your PHP project.
 Require VideoPlatformsParser file:
 ```
