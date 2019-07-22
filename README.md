@@ -43,7 +43,7 @@ require '/video-platforms-parser/src/VideoPlatformsParser.php';
 
 Require package with composer:
 ```
-composer require chojnicki/video-platforms-grabber
+composer require chojnicki/video-platforms-parser
 ```
 
 (for Laravel below 5.5) In `/config/app.php` add Service Provider:
