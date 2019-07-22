@@ -28,7 +28,7 @@ Every parser that is using API also has parser without API as backup. To use it 
 
 Simply require package with composer:
 ```
-composer require chojnicki/video-platforms-grabber
+composer require chojnicki/video-platforms-parser
 ```
 
 ## Installation without Composer or Laravel
