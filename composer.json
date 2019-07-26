@@ -1,8 +1,9 @@
 {
     "name": "chojnicki/video-platforms-parser",
-    "description": "Easy to use grabber for video info, screens and more from YouTube and other platforms.",
+    "description": "Easy to use SDK with grabber for multiple platforms at once like YouTube, Dailymotion, Facebook and more.",
     "type": "library",
     "license": "MIT",
+    "keywords": ["parser", "grabber", "youtube", "dailymotion", "faceboom", "video", "liveleak", "cda", "laravel"],
     "authors": [
         {
             "name": "chojnicki",
