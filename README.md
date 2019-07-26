@@ -1,6 +1,6 @@
 # Video Platforms Parser
 
-Video Platforms Parser is easy to use SDK for multiple platforms at once, like YouTube or Dailymotion.
+Video Platforms Parser is easy to use SDK with grabber for multiple platforms at once, like YouTube, Dailymotion, Facebook and more.
 
 ## Requirements
 
@@ -16,7 +16,7 @@ Video Platforms Parser is easy to use SDK for multiple platforms at once, like Y
 | Facebook      | (not ready)        |  YES          |
 | LiveLeak      | NO API             |  YES          |
 | CDA           | NO API             |  YES          |
-| Vimeo         | YES                |  YES         |
+| Vimeo         | YES                |  YES          |
 
 * With API - parser is using official API - fast and reliable (but YouTube require api key)
 * Without API - parser will grab video page and parse required info (needed in platforms that do not provide API or as a backup) - can be slower and less reliable
@@ -57,7 +57,7 @@ Chojnicki\VideoPlatformsParser\ServiceProvider::class,
 
 Publish config:
 ```
-$ php artisan vendor:publish --provider="Chojnicki\VideoPlatformsParser\ServiceProvider"
+php artisan vendor:publish --provider="Chojnicki\VideoPlatformsParser\ServiceProvider"
 ```
 
 Now You can start grabbing info like this:
@@ -115,4 +115,4 @@ For every supported platform parser will return array with:
 - tags: array with keywords
 - api: will be true if official platform API was used and false otherwise
 
-More grabbed info in future :)
+More info in future :)
