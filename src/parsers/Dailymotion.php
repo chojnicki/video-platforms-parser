@@ -59,9 +59,9 @@ class Dailymotion
         return [
             'id' => $id,
             'title' => $json['title'],
-            'description' => $json['description'],
-            'thumbnail' => $json['thumbnail_url'],
-            'tags' => $json['tags'],
+            'description' => ! empty($json['description']) ? $json['description'] : null,
+            'thumbnail' => ! empty($json['thumbnail_url']) ? $json['thumbnail_url'] : null,
+            'tags' => ! empty($json['tags']) ? $json['tags'] : null,
             'api' => true
         ];
     }

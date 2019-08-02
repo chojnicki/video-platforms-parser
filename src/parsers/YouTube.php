@@ -76,9 +76,9 @@ class YouTube
         return [
             'id' => $id,
             'title' => $json['title'],
-            'description' => $json['description'],
+            'description' => ! empty($json['description']) ? $json['description'] : null,
             'thumbnail' => end($json['thumbnails'])['url'],
-            'tags' => $json['tags'],
+            'tags' => ! empty($json['tags']) ? $json['tags'] : null,
             'api' => true
         ];
     }

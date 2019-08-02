@@ -59,8 +59,8 @@ class Vimeo
         return [
             'id' => $id,
             'title' => $json['title'],
-            'description' => $json['description'],
-            'thumbnail' => $json['thumbnail_url'],
+            'description' => ! empty($json['description']) ? $json['description'] : null,
+            'thumbnail' => ! empty($json['thumbnail_url']) ? $json['thumbnail_url'] : null,
             'api' => true
         ];
     }
