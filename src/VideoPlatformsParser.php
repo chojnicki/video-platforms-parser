@@ -113,6 +113,13 @@ class VideoPlatformsParser
                 'platform' => 'youtube',
                 'id' => $params_url['v']
             ];
+        } else if (strpos($parsed_url['host'], 'youtu.be') !== false) {
+            if (empty(explode('/', $parsed_url['path'])[1])) return false;
+
+            return [
+                'platform' => 'youtube',
+                'id' => explode('/', $parsed_url['path'])[1]
+            ];
         } else if (strpos($parsed_url['host'], 'liveleak.com') !== false) {
             if (empty($params_url['t'])) return false;
 
