@@ -138,11 +138,13 @@ class VideoPlatformsParser
             ];
         } else if (strpos($parsed_url['host'], 'facebook.com') !== false) {
             if (strpos($parsed_url['path'], '/videos/') !== false) { // #1 type link
+                if (empty($parsed_url['path'])) return false;
                 if (empty(explode('/', $parsed_url['path'])[3])) return false;
+                $path = array_filter(explode('/', $parsed_url['path']));
 
                 return [
                     'platform' => 'facebook',
-                    'id' => explode('/', $parsed_url['path'])[3]
+                    'id' => end($path)
                 ];
             } else if (strpos($parsed_url['path'], '/watch/') !== false) { // #2 type link
                 if (empty($params_url['v'])) return false;
