@@ -64,21 +64,22 @@ class YouTube
             throw new Exception('YouTube API was not set');
         }
 
-        $url = 'https://www.googleapis.com/youtube/v3/videos?id=' . $id . '&part=snippet&key=' . $this->api_key;
+        $url = 'https://www.googleapis.com/youtube/v3/videos?id=' . $id . '&part=snippet,contentDetails&key=' . $this->api_key;
 
         /* Make call to API */
         $response = VideoPlatformsParser::HTTPGet($url);
         $json = json_decode($response, true);
 
-        if (empty($json['items'][0]['snippet'])) throw new Exception('Video not found for given ID in API json response');
+        if (empty($json['items'][0])) throw new Exception('Video not found for given ID in API json response');
 
-        $json = $json['items'][0]['snippet'];
+        $json = $json['items'][0];
         return [
             'id' => $id,
-            'title' => $json['title'],
-            'description' => ! empty($json['description']) ? $json['description'] : null,
-            'thumbnail' => end($json['thumbnails'])['url'],
-            'tags' => ! empty($json['tags']) ? $json['tags'] : null,
+            'title' => $json['snippet']['title'],
+            'description' => ! empty($json['snippet']['description']) ? $json['snippet']['description'] : null,
+            'thumbnail' => end($json['snippet']['thumbnails'])['url'],
+            'tags' => ! empty($json['snippet']['tags']) ? $json['snippet']['tags'] : null,
+            'duration' => self::ISO8601ToSeconds($json['contentDetails']['duration']),
             'api' => true
         ];
     }
@@ -121,9 +122,30 @@ class YouTube
                 $return['tags'] = array_map('trim', $return['tags']); // remove spaces
             }
         }
+        preg_match('/itemprop="duration" content="(\w+)">/', $response, $duration);
+        if (! empty($duration[1])) $return['duration'] = self::ISO8601ToSeconds($duration[1]);
 
         return $return;
     }
 
 
+    /**
+     * Convert ISO 8601 values like P2DT15M33S to a total value of seconds.
+     * credits to RuudBurger
+     *
+     * @param string $ISO8601
+     * @return int
+     */
+    private static function ISO8601ToSeconds($ISO8601) {
+        try {
+            $interval = new \DateInterval($ISO8601);
+        } catch (Exception $e) {
+            return 0;
+        }
+
+        return ($interval->d * 24 * 60 * 60) +
+            ($interval->h * 60 * 60) +
+            ($interval->i * 60) +
+            $interval->s;
+    }
 }

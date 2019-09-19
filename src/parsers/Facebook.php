@@ -38,14 +38,11 @@ class Facebook
         }
 
         $return['title'] = $dom->getElementsByTagName('title')->item(0)->textContent;
-        if (strlen($return['title']) > $return['description']) { // description was cuted
+        if (empty($return['description']) || (strlen($return['title']) > $return['description'])) { // description was cuted
             $return['description'] = $return['title'];
         }
 
         return $return;
     }
-
-
-
 
 }

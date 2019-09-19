@@ -45,6 +45,8 @@ class CDA
                 $return['tags'] = array_slice($return['tags'], 2); // remove first two tags (video, filmik)
             }
         }
+        preg_match('/,"duration":"(\w+)"/', $response, $duration);
+        if (! empty($duration[1])) $return['duration'] = $duration[1];
 
         return $return;
     }

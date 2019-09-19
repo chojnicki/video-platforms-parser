@@ -61,6 +61,7 @@ class Vimeo
             'title' => $json['title'],
             'description' => ! empty($json['description']) ? $json['description'] : null,
             'thumbnail' => ! empty($json['thumbnail_url']) ? $json['thumbnail_url'] : null,
+            'duration' => ! empty($json['duration']) ? $json['duration'] : 0,
             'api' => true
         ];
     }
@@ -81,12 +82,10 @@ class Vimeo
         /* Grab video page */
         $response = VideoPlatformsParser::HTTPGet($url);
 
-
         /* Make HTML DOM from response */
         $dom = new DOMDocument();
         libxml_use_internal_errors(true); // ignore errors in html on website
         $dom->loadHTML($response);
-
 
         /* Parse data */
         $return = [];
@@ -102,8 +101,8 @@ class Vimeo
                 $return['thumbnail'] = $meta->getAttribute('content');
                 if ($return['thumbnail']) {
                     $parsed_url = parse_url($return['thumbnail']);
-                    parse_str(!empty($parsed_url['query']) ? $parsed_url['query'] : '', $params_url);
-                    if (!empty($params_url['src0'])) $return['thumbnail'] = $params_url['src0'];
+                    parse_str(! empty($parsed_url['query']) ? $parsed_url['query'] : '', $params_url);
+                    if (! empty($params_url['src0'])) $return['thumbnail'] = $params_url['src0'];
                 }
             } else if ($meta->getAttribute('name') == 'keywords') {
                 $return['tags'] = $meta->getAttribute('content');
@@ -111,6 +110,8 @@ class Vimeo
                 $return['tags'] = array_map('trim', $return['tags']); // remove spaces
             }
         }
+        preg_match('/,"duration":{"raw":(\w+),/', $response, $duration);
+        if (! empty($duration[1])) $return['duration'] = $duration[1];
 
         return $return;
     }

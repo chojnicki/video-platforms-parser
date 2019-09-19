@@ -9,6 +9,8 @@ use Chojnicki\VideoPlatformsParser\parsers\Facebook;
 use Chojnicki\VideoPlatformsParser\parsers\Vimeo;
 use Chojnicki\VideoPlatformsParser\parsers\CDA;
 use Exception;
+use getID3;
+use wapmorgan\BinaryStream\BinaryStream;
 
 class VideoPlatformsParser
 {
@@ -85,6 +87,7 @@ class VideoPlatformsParser
             'description' => (!empty($info['description'])) ? $info['description'] : '',
             'thumbnail' => (!empty($info['thumbnail'])) ? $info['thumbnail'] : '',
             'tags' => (!empty($info['tags'])) ? $info['tags'] : [],
+            'duration' => (! empty($info['duration'])) ? intval($info['duration']) : 0,
             'api' => (!empty($info['api'])) ? $info['api'] : false,
         ];
     }
@@ -194,5 +197,4 @@ class VideoPlatformsParser
 
         return file_get_contents($url, false, $context);
     }
-
 }

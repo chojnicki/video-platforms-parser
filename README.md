@@ -113,6 +113,7 @@ For every supported platform parser will return array with:
 - description: video description
 - thumbnail: url for image with highest possible resolution
 - tags: array with keywords
+- duration: length in seconds (not supported in LiveLeak and Facebook yet [(more info)](https://github.com/chojnicki/video-platforms-parser/issues/4)
 - api: will be true if official platform API was used and false otherwise
 
 More info in future :)

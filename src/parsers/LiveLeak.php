@@ -20,12 +20,10 @@ class LiveLeak
         /* Grab video page */
         $response = VideoPlatformsParser::HTTPGet($url);
 
-
         /* Make HTML DOM from response */
         $dom = new DOMDocument();
         libxml_use_internal_errors(true); // ignore errors in html on website
         $dom->loadHTML($response);
-
 
         /* Parse data */
         $return = [];
@@ -51,8 +49,4 @@ class LiveLeak
 
         return $return;
     }
-
-
-
-
 }
