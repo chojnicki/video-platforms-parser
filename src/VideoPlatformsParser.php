@@ -9,8 +9,6 @@ use Chojnicki\VideoPlatformsParser\parsers\Facebook;
 use Chojnicki\VideoPlatformsParser\parsers\Vimeo;
 use Chojnicki\VideoPlatformsParser\parsers\CDA;
 use Exception;
-use getID3;
-use wapmorgan\BinaryStream\BinaryStream;
 
 class VideoPlatformsParser
 {
