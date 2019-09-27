@@ -54,13 +54,11 @@ class Vimeo
         $response = VideoPlatformsParser::HTTPGet($url);
         $json = json_decode($response, true);
 
-        $json['thumbnail_url'] = str_replace('_295x166', '', $json['thumbnail_url']);
-
         return [
             'id' => $id,
             'title' => $json['title'],
             'description' => ! empty($json['description']) ? $json['description'] : null,
-            'thumbnail' => ! empty($json['thumbnail_url']) ? $json['thumbnail_url'] : null,
+            'thumbnail' => ! empty($json['thumbnail_url']) ? str_replace('_295x166', '', $json['thumbnail_url']) : null,
             'duration' => ! empty($json['duration']) ? $json['duration'] : 0,
             'api' => true
         ];
