@@ -3,7 +3,7 @@
     "description": "Easy to use SDK with grabber for multiple platforms at once like YouTube, Dailymotion, Facebook and more.",
     "type": "library",
     "license": "MIT",
-    "keywords": ["parser", "grabber", "youtube", "dailymotion", "faceboom", "video", "liveleak", "cda", "laravel"],
+    "keywords": ["parser", "grabber", "youtube", "dailymotion", "facebook", "video", "liveleak", "cda", "laravel"],
     "authors": [
         {
             "name": "chojnicki",
