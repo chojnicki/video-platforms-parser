@@ -71,7 +71,7 @@ class VideoPlatformsParser
         /* If there is not tags then generate own */
         if (empty($info['tags']) && !empty($info['title'])) {
             $info['tags'] = explode(' ', $info['title']);
-            $info['tags'] = preg_replace('/[^a-zA-Z0-9 ]+/', '', $info['tags']);
+            $info['tags'] = preg_replace('/([^\w ]|_)/u', '', $info['tags']);
             $info['tags'] = array_map('trim', $info['tags']);
             $info['tags'] = array_filter($info['tags'], function($v) { return (strlen($v) > 2) && (strlen($v) < 15); });
             $info['tags'] = array_unique($info['tags']);
