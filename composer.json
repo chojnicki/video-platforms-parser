@@ -14,8 +14,7 @@
         "php": "^7.0",
         "ext-dom": "*",
         "ext-libxml": "*",
-        "ext-json": "*",
-        "ext-iconv": "*"
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
