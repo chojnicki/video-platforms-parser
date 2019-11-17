@@ -17,8 +17,9 @@ Video Platforms Parser is easy to use SDK with grabber for multiple platforms at
 | LiveLeak      | NO API             |  YES          |
 | CDA           | NO API             |  YES          |
 | Vimeo         | YES                |  YES          |
+| Streamable    | YES                |  YES          |
 
-* With API - parser is using official API - fast and reliable (but YouTube require api key)
+* With API - parser is using official API (default) - fast and reliable (but YouTube require api key)
 * Without API - parser will grab video page and parse required info (needed in platforms that do not provide API or as a backup) - can be slower and less reliable
 
 Every parser that is using API also has parser without API as backup. To use it you need to disable API for selected platform in config (not recommended).
@@ -113,7 +114,22 @@ For every supported platform parser will return array with:
 - description: video description
 - thumbnail: url for image with highest possible resolution
 - tags: array with keywords
-- duration: length in seconds (not supported in LiveLeak and Facebook yet [(more info)](https://github.com/chojnicki/video-platforms-parser/issues/4)
+- duration: length in seconds (not supported in LiveLeak and Facebook yet [[more info]](https://github.com/chojnicki/video-platforms-parser/issues/4))
 - api: will be true if official platform API was used and false otherwise
 
-More info in future :)
+
+## Optional config
+
+Config is located in video-platforms-parser.php or you can pass array with VideoPlatformsParser object:
+
+Default config:
+
+```
+[
+    'youtube_api_key' => '',
+    'youtube_api_disabled' => false,
+    'dailymotion_api_disabled' => false,
+    'vimeo_api_disabled' => false,
+    'streamable_api_disabled' => false
+]
+```
