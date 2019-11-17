@@ -8,6 +8,7 @@ use Chojnicki\VideoPlatformsParser\parsers\LiveLeak;
 use Chojnicki\VideoPlatformsParser\parsers\Facebook;
 use Chojnicki\VideoPlatformsParser\parsers\Vimeo;
 use Chojnicki\VideoPlatformsParser\parsers\CDA;
+use Chojnicki\VideoPlatformsParser\parsers\Streamable;
 use Exception;
 
 class VideoPlatformsParser
@@ -60,6 +61,10 @@ class VideoPlatformsParser
                 break;
             case 'cda':
                 $parser = new CDA();
+                break;
+            case 'streamable':
+                $parser = new Streamable();
+                if (!empty($this->params['streamable_api_disabled'])) $parser->disableAPI($this->params['streamable_api_disabled']);
                 break;
             default:
                 throw new Exception('Platform or video not detected in given URL');
@@ -171,7 +176,15 @@ class VideoPlatformsParser
                 'platform' => 'cda',
                 'id' => explode('/', $parsed_url['path'])[2]
             ];
+        } else if (strpos($parsed_url['host'], 'streamable.com') !== false) {
+            if (empty(explode('/', $parsed_url['path'])[1])) return false;
+
+            return [
+                'platform' => 'streamable',
+                'id' => explode('/', $parsed_url['path'])[1]
+            ];
         }
+
 
         return false;
     }
