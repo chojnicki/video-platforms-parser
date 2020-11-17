@@ -16,9 +16,18 @@
         "ext-libxml": "*",
         "ext-json": "*"
     },
+    "require-dev": {
+        "orchestra/testbench": "3.*||4.*||5.*",
+        "phpunit/phpunit": "^6.0"
+    },
     "autoload": {
         "psr-4": {
             "Chojnicki\\VideoPlatformsParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Chojnicki\\VideoPlatformsParser\\Tests\\": "tests/"
         }
     },
     "extra": {
