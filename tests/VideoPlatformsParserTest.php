@@ -25,6 +25,7 @@ class VideoPlatformsParserTest extends TestCase
         ];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
@@ -33,17 +34,17 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('thumbnail', $result);
         $this->assertArrayHasKey('tags', $result);
         $this->assertArrayHasKey('duration', $result);
-        $this->assertArrayHasKey('api', $result);
     }
 
     public function testGetShortenYouTubeUrlOnApiDisabled()
     {
-        $url = 'https://youtu.be/watch?v=jofNR_WkoCE';
+        $url = 'https://youtu.be/jofNR_WkoCE';
         $params = [
             'youtube_api_disabled' => true,
         ];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
@@ -52,7 +53,6 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('thumbnail', $result);
         $this->assertArrayHasKey('tags', $result);
         $this->assertArrayHasKey('duration', $result);
-        $this->assertArrayHasKey('api', $result);
     }
 
     public function testGetYouTubeUrlOnApiEnabled()
@@ -65,6 +65,7 @@ class VideoPlatformsParserTest extends TestCase
         ];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
@@ -85,6 +86,7 @@ class VideoPlatformsParserTest extends TestCase
         ];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
@@ -93,7 +95,6 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('thumbnail', $result);
         $this->assertArrayHasKey('tags', $result);
         $this->assertArrayHasKey('duration', $result);
-        $this->assertArrayHasKey('api', $result);
     }
 
     public function testGetVimeoUrlOnApiDisabled()
@@ -104,6 +105,7 @@ class VideoPlatformsParserTest extends TestCase
         ];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
@@ -112,22 +114,37 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('thumbnail', $result);
         $this->assertArrayHasKey('tags', $result);
         $this->assertArrayHasKey('duration', $result);
-        $this->assertArrayHasKey('api', $result);
     }
 
     public function testGetStreamableUrlOnApiDisabled()
     {
-        $url = 'https://streamable.com/9f5cev';
+        $url = 'https://streamable.com/1625tt';
         $params = [
             'streamable_api_disabled' => true,
         ];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
         $this->assertArrayHasKey('title', $result);
-        $this->assertArrayHasKey('description', $result);
+        $this->assertArrayHasKey('thumbnail', $result);
+        $this->assertArrayHasKey('tags', $result);
+        $this->assertArrayHasKey('duration', $result);
+    }
+
+    public function testGetStreamableUrlOnApiEnabled()
+    {
+        $url = 'https://streamable.com/1625tt';
+        $params = [];
+        $videoPlatformsParser = new VideoPlatformsParser($params);
+        $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
+
+        $this->assertArrayHasKey('id', $result);
+        $this->assertArrayHasKey('platform', $result);
+        $this->assertArrayHasKey('title', $result);
         $this->assertArrayHasKey('thumbnail', $result);
         $this->assertArrayHasKey('tags', $result);
         $this->assertArrayHasKey('duration', $result);
@@ -140,6 +157,7 @@ class VideoPlatformsParserTest extends TestCase
         $params = [];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
@@ -147,8 +165,6 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('description', $result);
         $this->assertArrayHasKey('thumbnail', $result);
         $this->assertArrayHasKey('tags', $result);
-        $this->assertArrayHasKey('duration', $result);
-        $this->assertArrayHasKey('api', $result);
     }
 
     public function testGetFacebookUrl()
@@ -157,6 +173,7 @@ class VideoPlatformsParserTest extends TestCase
         $params = [];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
@@ -164,8 +181,6 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('description', $result);
         $this->assertArrayHasKey('thumbnail', $result);
         $this->assertArrayHasKey('tags', $result);
-        $this->assertArrayHasKey('duration', $result);
-        $this->assertArrayHasKey('api', $result);
     }
 
     public function testGetTwitterUrlOnApiDisabled()
@@ -174,6 +189,7 @@ class VideoPlatformsParserTest extends TestCase
         $params = ['twitter_api_disabled' => true];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
@@ -181,8 +197,6 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('description', $result);
         $this->assertArrayHasKey('thumbnail', $result);
         $this->assertArrayHasKey('tags', $result);
-        $this->assertArrayHasKey('duration', $result);
-        $this->assertArrayHasKey('api', $result);
     }
 
     public function testGetTwitterUrlOnApiEnabled()
@@ -193,6 +207,7 @@ class VideoPlatformsParserTest extends TestCase
         $params = ['twitter_api_bearer_token' => $this->apiKeys['twitter']];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
 
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('platform', $result);
