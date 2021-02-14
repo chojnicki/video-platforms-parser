@@ -6,6 +6,7 @@ use Chojnicki\VideoPlatformsParser\parsers\YouTube;
 use Chojnicki\VideoPlatformsParser\parsers\Dailymotion;
 use Chojnicki\VideoPlatformsParser\parsers\LiveLeak;
 use Chojnicki\VideoPlatformsParser\parsers\Facebook;
+use Chojnicki\VideoPlatformsParser\parsers\Twitter;
 use Chojnicki\VideoPlatformsParser\parsers\Vimeo;
 use Chojnicki\VideoPlatformsParser\parsers\CDA;
 use Chojnicki\VideoPlatformsParser\parsers\Streamable;
@@ -54,6 +55,11 @@ class VideoPlatformsParser
                 break;
             case 'facebook':
                 $parser = new Facebook();
+                break;
+            case 'twitter':
+                $parser = new Twitter();
+                if (!empty($this->params['twitter_api_bearer_token'])) $parser->setApiKey($this->params['twitter_api_bearer_token']);
+                if (!empty($this->params['twitter_api_disabled'])) $parser->disableAPI($this->params['twitter_api_disabled']);
                 break;
             case 'vimeo':
                 $parser = new Vimeo();
@@ -159,6 +165,15 @@ class VideoPlatformsParser
                     'id' => $params_url['v']
                 ];
             }
+        } else if (strpos($parsed_url['host'], 'twitter.com') !== false) {
+            if (empty($parsed_url['path'])) return false;
+            $path = explode('/', $parsed_url['path']);
+            if (!is_numeric(end($path))) return false;
+
+            return [
+                'platform' => 'twitter',
+                'id' => end($path)
+            ];
         } else if (strpos($parsed_url['host'], 'vimeo.com') !== false) {
             if (empty($parsed_url['path'])) return false;
             $path = explode('/', $parsed_url['path']);
@@ -194,17 +209,25 @@ class VideoPlatformsParser
      * Method for API/parsers calls
      *
      * @param string $url
+     * @param array $headers
      * @return false|string
      */
-    public static function HTTPGet($url)
+    public static function HTTPGet($url, $headers = [])
     {
+        $headers = array_merge([
+            'Accept-language' => 'en-US,en;q=0.5',
+            'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'User-Agent' => 'facebot' // simulate bot to make sure that site will provide :og meta
+        ], $headers);
+
+        array_walk($headers, function (&$value, $key) {
+            $value = $key . ': ' . $value;
+        });
+        $headers = array_values($headers);
+
         $context = stream_context_create([
             'http' => [
-                'header' => [
-                    'Accept-language: en-US,en;q=0.5' ,
-                    'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                    'User-Agent: facebot' // simulate bot to make sure that site will provide :og meta
-                ]
+                'header' => $headers
             ]
         ]);
 

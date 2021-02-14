@@ -1,0 +1,11 @@
+<?php
+/**
+ * Testing works on live API's and sites.
+ * Because of this for some sites we have to provide own API keys (if needed) to test them.
+ * Copy this file to same directory with name apiKeys.php
+ */
+
+return [
+    'youtube' => '', // youtube_api_key in config
+    'twitter' => '' // twitter_api_bearer_token in config
+];

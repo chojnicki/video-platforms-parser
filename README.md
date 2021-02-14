@@ -14,6 +14,7 @@ Video Platforms Parser is easy to use SDK with grabber for multiple platforms at
 | YouTube       | YES (key required) |  YES          |
 | Dailymotion   | YES                |  YES          |
 | Facebook      | (not ready)        |  YES          |
+| Twitter       | YES                |  YES          |
 | LiveLeak      | NO API             |  YES          |
 | CDA           | NO API             |  YES          |
 | Vimeo         | YES                |  YES          |
@@ -130,6 +131,8 @@ Default config:
     'youtube_api_disabled' => false,
     'dailymotion_api_disabled' => false,
     'vimeo_api_disabled' => false,
-    'streamable_api_disabled' => false
+    'streamable_api_disabled' => false,
+    'twitter_api_bearer_token' => '',
+    'twitter_api_disabled' => false
 ]
 ```
