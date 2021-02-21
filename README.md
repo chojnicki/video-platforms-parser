@@ -14,7 +14,7 @@ Video Platforms Parser is easy to use SDK with grabber for multiple platforms at
 | YouTube       | YES (key required) |  YES          |
 | Dailymotion   | YES                |  YES          |
 | Facebook      | (not ready)        |  YES          |
-| Twitter       | YES                |  YES          |
+| Twitter       | YES (key required) |  YES          |
 | LiveLeak      | NO API             |  YES          |
 | CDA           | NO API             |  YES          |
 | Vimeo         | YES                |  YES          |
