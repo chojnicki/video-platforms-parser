@@ -15,7 +15,7 @@ class Facebook
      */
     public function getVideoInfo($id)
     {
-        $url = 'https://m.facebook.com/watch/?v=' . $id;
+        $url = 'https://facebook.com/watch/?v=' . $id;
 
         /* Grab video page */
         $response = VideoPlatformsParser::HTTPGet($url);
@@ -30,15 +30,19 @@ class Facebook
         $metas = $dom->getElementsByTagName('meta');
         for ($i = 0; $i < $metas->length; $i++) { // check all meta tags
             $meta = $metas->item($i);
-            if ($meta->getAttribute('property') == 'og:description') {
+            if ($meta->getAttribute('name') == 'description') {
                 $return['description'] = $meta->getAttribute('content');
             } else if ($meta->getAttribute('property') == 'og:image') {
                 $return['thumbnail'] = $meta->getAttribute('content');
+            } else if ($meta->getAttribute('property') == 'og:title') {
+                $return['title'] = $meta->getAttribute('content');
             }
         }
 
-        $return['title'] = $dom->getElementsByTagName('title')->item(0)->textContent;
-        if (empty($return['description']) || (strlen($return['title']) > $return['description'])) { // description was cuted
+        if (empty($return['title'])) {
+            $return['title'] = $dom->getElementsByTagName('title')->item(0)->textContent;
+        }
+        if (empty($return['description'])) {
             $return['description'] = $return['title'];
         }
 
