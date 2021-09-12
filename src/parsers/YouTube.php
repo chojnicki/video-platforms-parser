@@ -70,7 +70,7 @@ class YouTube
         $response = VideoPlatformsParser::HTTPGet($url);
         $json = json_decode($response, true);
 
-        if (empty($json['items'][0])) throw new Exception('Video not found for given ID in API json response');
+        if (!count($json['items'])) throw new Exception('Video not found for given ID in API json response');
 
         $json = $json['items'][0];
         return [
