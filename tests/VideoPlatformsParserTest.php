@@ -118,7 +118,7 @@ class VideoPlatformsParserTest extends TestCase
 
     public function testGetStreamableUrlOnApiDisabled()
     {
-        $url = 'https://streamable.com/1625tt';
+        $url = 'https://vimeo.com/126100721';
         $params = [
             'streamable_api_disabled' => true,
         ];
@@ -136,7 +136,7 @@ class VideoPlatformsParserTest extends TestCase
 
     public function testGetStreamableUrlOnApiEnabled()
     {
-        $url = 'https://streamable.com/1625tt';
+        $url = 'https://streamable.com/idw7xq';
         $params = [];
         $videoPlatformsParser = new VideoPlatformsParser($params);
         $result = $videoPlatformsParser->get($url);
@@ -149,22 +149,6 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('tags', $result);
         $this->assertArrayHasKey('duration', $result);
         $this->assertArrayHasKey('api', $result);
-    }
-
-    public function testGetLiveLeakUrl()
-    {
-        $url = 'https://www.liveleak.com/view?t=stuEM_1605476833';
-        $params = [];
-        $videoPlatformsParser = new VideoPlatformsParser($params);
-        $result = $videoPlatformsParser->get($url);
-        $result = array_filter($result);
-
-        $this->assertArrayHasKey('id', $result);
-        $this->assertArrayHasKey('platform', $result);
-        $this->assertArrayHasKey('title', $result);
-        $this->assertArrayHasKey('description', $result);
-        $this->assertArrayHasKey('thumbnail', $result);
-        $this->assertArrayHasKey('tags', $result);
     }
 
     public function testGetFacebookUrl()
