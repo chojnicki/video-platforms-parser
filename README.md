@@ -48,15 +48,6 @@ Require package with composer:
 composer require chojnicki/video-platforms-parser
 ```
 
-(for Laravel below 5.5) In `/config/app.php` add Service Provider:
-```
-Chojnicki\VideoPlatformsParser\ServiceProvider::class,
-```
-(for Laravel below 5.5) In `/config/app.php` add Facade:
-```
-'VideoPlatformsParser' => Chojnicki\VideoPlatformsParser\Facade::class,
-```
-
 Publish config:
 ```
 php artisan vendor:publish --provider="Chojnicki\VideoPlatformsParser\ServiceProvider"
