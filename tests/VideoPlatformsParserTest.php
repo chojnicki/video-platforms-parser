@@ -118,7 +118,7 @@ class VideoPlatformsParserTest extends TestCase
 
     public function testGetStreamableUrlOnApiDisabled()
     {
-        $url = 'https://vimeo.com/126100721';
+        $url = 'https://streamable.com/idw7xq';
         $params = [
             'streamable_api_disabled' => true,
         ];
