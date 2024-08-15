@@ -37,5 +37,9 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Run test suite
-        run: vendor/bin/phpunit
+      # Disable testing for now due to rate limiting and other issues from GH workers
+      # Instead run tests manually on local machine before publishing, but even there it's not 100% reliable due to nature of crawling
+      # TODO to maintain this project easier, maybe consider using only API when it's possible and and remove html parsing all together
+      # (keep only for providers when there is no API or API is paid as a backup)
+      # - name: Run test suite
+      #   run: vendor/bin/phpunit
