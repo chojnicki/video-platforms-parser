@@ -101,7 +101,7 @@ class Streamable
             }
         }
 
-        preg_match('/, "duration": (\w+)/', $response, $duration);
+        preg_match('/\\\"duration\\\":(\d+)/', $response, $duration);
         if (! empty($duration[1])) $return['duration'] = $duration[1];
 
         return $return;
