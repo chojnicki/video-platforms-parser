@@ -97,6 +97,22 @@ class VideoPlatformsParserTest extends TestCase
         $this->assertArrayHasKey('duration', $result);
     }
 
+    public function testGetVimeoUrlOnApiEnabled()
+    {
+        $url = 'https://vimeo.com/126100721';
+        $videoPlatformsParser = new VideoPlatformsParser();
+        $result = $videoPlatformsParser->get($url);
+        $result = array_filter($result);
+
+        $this->assertArrayHasKey('id', $result);
+        $this->assertArrayHasKey('platform', $result);
+        $this->assertArrayHasKey('title', $result);
+        $this->assertArrayHasKey('description', $result);
+        $this->assertArrayHasKey('thumbnail', $result);
+        $this->assertArrayHasKey('tags', $result);
+        $this->assertArrayHasKey('duration', $result);
+    }
+
     public function testGetVimeoUrlOnApiDisabled()
     {
         $url = 'https://vimeo.com/126100721';
