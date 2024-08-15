@@ -177,11 +177,10 @@ class VideoPlatformsParser
         } else if (strpos($parsed_url['host'], 'vimeo.com') !== false) {
             if (empty($parsed_url['path'])) return false;
             $path = explode('/', $parsed_url['path']);
-            if (!is_numeric(end($path))) return false;
 
             return [
                 'platform' => 'vimeo',
-                'id' => end($path)
+                'id' => implode('/', array_filter($path))
             ];
         } else if (strpos($parsed_url['host'], 'cda.pl') !== false) {
             if (strpos($parsed_url['path'], '/video/') === false) return false;
