@@ -1,14 +1,18 @@
 name: build
 
-on: [push, pull_request]
+on:
+  - push
+  - pull_request
 
 jobs:
   run:
     runs-on: ${{ matrix.operating-system }}
+
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ['7.2', '7.3', '7.4', '8.0']
+        php-versions: ['7.2', '7.3', '7.4', '8.0', '8.3', '8.4', '8.5']
+
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
 
     steps:
@@ -36,10 +40,3 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
-
-      # Disable testing for now due to rate limiting and other issues from GH workers
-      # Instead run tests manually on local machine before publishing, but even there it's not 100% reliable due to nature of crawling
-      # TODO to maintain this project easier, maybe consider using only API when it's possible and and remove html parsing all together
-      # (keep only for providers when there is no API or API is paid as a backup)
-      # - name: Run test suite
-      #   run: vendor/bin/phpunit
