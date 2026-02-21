@@ -3,7 +3,17 @@
     "description": "Easy to use SDK with grabber for multiple platforms at once like YouTube, Dailymotion, Facebook and more.",
     "type": "library",
     "license": "MIT",
-    "keywords": ["parser", "grabber", "youtube", "dailymotion", "facebook", "video", "liveleak", "cda", "laravel"],
+    "keywords": [
+        "parser",
+        "grabber",
+        "youtube",
+        "dailymotion",
+        "facebook",
+        "video",
+        "liveleak",
+        "cda",
+        "laravel"
+    ],
     "authors": [
         {
             "name": "chojnicki",
@@ -17,8 +27,8 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "orchestra/testbench": "3.*||4.*||5.*||6.*",
-        "phpunit/phpunit": "^8.5.12"
+        "orchestra/testbench": "3.*||4.*||5.*||6.*||^11.0",
+        "phpunit/phpunit": "^8.5.12||^12.5.12"
     },
     "autoload": {
         "psr-4": {
